@@ -51,6 +51,7 @@ class Playlist:
     current_song = self.__first_song
     while current_song != None:
       song_counter += 1 
+      # Next Node
       current_song = current_song.get_next_song()
     return song_counter
 
@@ -63,6 +64,20 @@ class Playlist:
   # 3. Song Title 3
 
   def print_songs(self):
-    pass
+    song_counter = 1
+    current_song = self.__first_song
+
+    if current_song == None:
+      print(f"Playlist is empty")
+
+    while current_song.get_title() != None:
+      print(f"{song_counter}. {current_song.get_title()}")
+      song_counter += 1 
+      # Go to next node
+      current_song = current_song.get_next_song()
+
+      #If reached tail
+      if current_song == None:
+        break 
 
   

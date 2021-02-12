@@ -24,6 +24,7 @@ class Playlist:
 
   def find_song(self, title):
     song_counter = 0
+    #Head
     current_song = self.__first_song
 
     while current_song.get_title() != title:
@@ -40,7 +41,23 @@ class Playlist:
   # TODO: Create a method called remove_song that removes a song from the playlist. This method takes one parameter, title, which is the song that should be removed. 
 
   def remove_song(self, title):
-    pass
+    current_song = self.__first_song
+    past_song = self.__first_song
+    while current_song.get_title() != title:
+      #establish relationship with songs
+      past_song = current_song
+      #Goes to next node
+      current_song = current_song.get_next_song()
+
+      if current_song.get_title() == title:
+        next_song = current_song.get_next_song()
+        #connects past song to head
+        past_song.set_next_song(next_song)
+        return f"{current_song.get_title()} has been deleted"
+        
+      if current_song == None:
+        return f"Song not on playlist"
+
 
 
 
@@ -48,7 +65,9 @@ class Playlist:
 
   def length(self):
     song_counter = 0
+    #Start at the head
     current_song = self.__first_song
+    # While it does not reach the tail
     while current_song != None:
       song_counter += 1 
       # Next Node
@@ -66,7 +85,7 @@ class Playlist:
   def print_songs(self):
     song_counter = 1
     current_song = self.__first_song
-
+    #Before while loop, is the playlist empty?
     if current_song == None:
       print(f"Playlist is empty")
 
